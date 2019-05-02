@@ -1,0 +1,7 @@
+[submodule "lib"]
+	path = lib
+	url = ssh://jonas-erbe.synology.me/volume1/git/projects/script-libs
+	branch = master
+[submodule "script-libs"]
+	path = script-libs
+	url = ssh://jonas-erbe.synology.me/volume1/git/projects/script-libs
