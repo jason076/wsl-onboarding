@@ -1,0 +1,6 @@
+# This script starts client programms for your XServer
+
+# Start terminalemulator with the profile day
+echo "Starting Clientprogramms!"
+cd
+terminator > /dev/null 2>&1 &
