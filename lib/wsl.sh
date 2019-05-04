@@ -1,8 +1,11 @@
+# This script containts common function to work with Windows Subsystem for Linux (WSL)
 
-# load libraries
+# AUTHOR: Jonas Erbe
+# GITHUB: https://github.com/jason076
+# REPOSITORY: https://github.com/jason076/script-libs
 
 #######################################
-# Install WSL utilities 
+# Install WSL utilities (https://github.com/wslutilities/wslu)
 # Globals:
 #   None
 # Arguments:
@@ -45,8 +48,8 @@ wsl__install_wslu() {
 #   none 
 # Arguments:
 # Returns:
-#   0: admin rights available
-#   1: no admin rights
+#   0: metadata enabled 
+#   1: failure 
 #######################################
 
 wsl__is_winadmin() {
@@ -59,6 +62,18 @@ wsl__is_winadmin() {
     return 1;
   fi
 }
+
+#######################################
+# Enables the metadata option for the windows filesystem
+# More information can be found at:
+# https://devblogs.microsoft.com/commandline/chmod-chown-wsl-improvements/
+# Globals:
+#   none 
+# Arguments:
+# Returns:
+#   0: admin rights available
+#   1: no admin rights
+#######################################
 
 wsl__enable_fs_meta() {
 

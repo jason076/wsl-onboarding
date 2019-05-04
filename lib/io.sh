@@ -1,5 +1,13 @@
-# Library for io-operations with dialog if available.
-# Otherwise it defaults to standard terminal io with echo.
+# Library to interact with the user. It tries to use dialog,
+# but defaults shell builtins if dialog is not available. 
+
+# AUTHOR: Jonas Erbe
+# GITHUB: https://github.com/jason076
+# REPOSITORY: https://github.com/jason076/script-libs
+
+# The library uses the libmgmt script from 
+# https://github.com/jason076/script-libs
+# to load other libraries with "libmgmt__load <lib_name>"
 
 # constants
 readonly YES_ALL_VAL_YES=YES
@@ -12,8 +20,6 @@ IO_DEFAULT_HEIGHT=0
 IO_DEFAULT_WIDTH=0
 IO_USE_DIALOG='FALSE'
 IO_INITIALIZED='FALSE'
-
-# load libraries
 
 #######################################
 # Initializes io 

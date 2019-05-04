@@ -1,14 +1,19 @@
 # This library contains functions to check for dependencies needed by other scripts
 # and install them if they are missing
 
+# AUTHOR: Jonas Erbe
+# GITHUB: https://github.com/jason076
+# REPOSITORY: https://github.com/jason076/script-libs
+
+# The library uses the libmgmt script from 
+# https://github.com/jason076/script-libs
+# to load other libraries with "libmgmt__load <lib_name>"
+
 # globale variables
 LIBMGMT_UPDATED='FALSE'
 
-
-# TODO(jason076): Add github link
-# The library uses the libmgmt script by jason076
 # Load libraries
-  libmgmt__load io
+  libmgmt__load "io"
 
 #######################################
 # Checks if the specified binary is installed.

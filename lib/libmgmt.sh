@@ -1,5 +1,10 @@
-# This library contains functions to make using
-# posix compatible script libraries more pleasant. 
+# This library contains functions to manage posix compliant 
+# shell script libraries written according to the standards from
+# https://github.com/jason076/script-libs
+#
+# AUTHOR: Jonas Erbe
+# GITHUB: https://github.com/jason076
+# REPOSITORY: https://github.com/jason076/script-libs
 
 #######################################
 # Loads a script library and verifies that the library is not loaded again, 
@@ -56,3 +61,5 @@ libmgmt__load() {
     fi
   fi
 }
+
+# TODO Add function to unload a library
