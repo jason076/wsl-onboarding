@@ -15,6 +15,7 @@ This repository contains a setup script doing the initial setup of the [*Windows
 1. Open the extracted directory, right click on *run-setup.ps1* and click on *Run with Powershell*
 
 # Work in Progress
+This project is using libraries from https://github.com/jason076/script-libs
 ## Contributing
 ## Further Reading
 
