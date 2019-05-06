@@ -1,4 +1,4 @@
-This repository contains a setup script doing the initial setup of the [*Windows Subsystem for Linux*](https://de.wikipedia.org/wiki/Windows_Subsystem_for_Linux). After the installtion you will be provided with a functioning Ubuntu installation able to launch applications with a GUI. The windows of the applications running within Ubuntu will seamlessly integrated within your Windows System.
+This repository contains a setup script doing the initial setup of the [*Windows Subsystem for Linux*](https://de.wikipedia.org/wiki/Windows_Subsystem_for_Linux). After the installtion you will be provided with a functioning Ubuntu installation able to launch applications with a GUI. The windows of the applications running within Ubuntu seamlessly integrate within your Windows System. During the setup process the script prints short descriptions about what the setup is doing in each particular setup step.
 
 # Usage
 
