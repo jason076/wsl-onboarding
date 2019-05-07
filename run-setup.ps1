@@ -1,15 +1,10 @@
 ﻿
-Write-Host This Script will request Admin rights. Please consult the read me if you want to know more about this.
+Write-Host This Script will request Admin rights, to check if the WSL is enabled and to enable it if it is diabled.
 Pause
 
-
-$cmd1="Set-Location $PWD
-"
-$cmd2={
+$cmd_enable_wsl={
     If((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux).State -Match "Enabled"){
-        Write-Host The WSL setup process will now be started.
-        Pause
-        Ubuntu.exe run bin/setup.sh
+        exit 0
     }
     Else{
         Write-Host The Windows-Subsystem-For-Linux is not enabled. It will be enabled now!
@@ -20,11 +15,15 @@ $cmd2={
     }
 }.ToString()
 
-$bytes = [System.Text.Encoding]::Unicode.GetBytes($cmd1 + $cmd2)
+$bytes = [System.Text.Encoding]::Unicode.GetBytes($cmd_enable_wsl)
 $encCmd = [Convert]::ToBase64String($bytes)
-$wd=Get-Location
+
 start-process -FilePath powershell -Wait -ArgumentList "-encodedCommand $encCmd" –verb runAs
 
+
+Write-Host The WSL setup process will now be started.
+Pause
+Ubuntu.exe run bin/setup.sh
 Write-Host Ubuntu will launch. You can type `"firefox`" in the terminator terminal to start firefox in Ubuntu. 
 Pause
 start-process -FilePath Ubuntu.exe

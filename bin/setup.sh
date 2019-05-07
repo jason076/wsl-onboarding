@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # WSL onboarding script
-# Does the initial setup for wsl using XMing as a XServer.
+# Does the initial setup for wsl using VcXsrv as a XServer.
 # Install Ubuntu using the windows store and enable WSL in "Windows optional features"
 # As an alternative to enable the WSL manually you can start this script with the 
 # bundeled powershell script. Consult the README for more information.
@@ -55,18 +55,21 @@ load_language() {
 #######################################
 
 install_default_config() {
-  # TODO(jonas): Check for errors and return appropriate value
+  # TODO(jason076): Check for errors and return appropriate value
   cp -b ./share/default-config/xinitrc ~/.xinitrc 
 
-  # TODO(jonas): Check Ubuntu standard files and include them
+  # TODO(jason076): Check Ubuntu standard files and include them
   cp -b ./share/default-config/profile ~/.profile
+
+  # TODO(jason076): Add wsl.conf to message
+  sudo cp -b ./share/default-config/wsl.conf /etc/wsl.conf
   
   # binaries
   if [ ! -d ~/.local/bin ]; then
     mkdir -p ~/.local/bin
   fi
 
-  cp -b ./share/default-config/startXming.sh ~/.local/bin/startXming.sh
+  cp -b ./share/default-config/startX.sh ~/.local/bin/startX.sh
 }
 
 #######################################
@@ -80,6 +83,7 @@ install_default_config() {
 #   None
 #######################################
 
+# TODO(jason076): Useless remove in future
 create_scalable_fonts() {
   # assuming that 64-bit Xming is installed
   # index fonts for XServer  
@@ -145,43 +149,35 @@ main() {
   sudo apt full-upgrade 
   io__message "${WSL_SYS_UPGRADE_FINISHED}"
 
-  # enable filesystem metadata
-  # TODO(jason076): Does not work (see script-libs/lib/wsl.sh)
-  #io__message "${WSL_META}"
-  #if wsl__enable_fs_meta; then
+  # only continue if ubuntu is running in admin mode
+  # TODO(jason076): Can be removed since font config was disabled
+  #if wsl__is_winadmin; then
   #  :
   #else
-  # io__message "${WSL_META_FAILED}"
+  #  io__message "${WSL_NO_ADMIN}" 
   #  exit 1
   #fi
-
-  # only continue if ubuntu is running in admin mode
-  if wsl__is_winadmin; then
-    :
-  else
-    io__message "${WSL_NO_ADMIN}" 
-    exit 1
-  fi
 
   # install default config files
   io__message "${WSL_INSTALL_CONFIG}"
   install_default_config
 
-  # install Xming
+  # install VcXsrv
+  # TODO(jason076): Change message to VcXsrc
   io__message "${WSL_INSTALL_XMING}"
-  ./bin/Xming-mesa-6-9-0-31-setup.exe
-  io__message "${WSL_INSTALL_XMING_FONT}"
-  ./bin/Xming-fonts-7-7-0-10-setup.exe
-  io__message "${WSL_CREATE_SCALEABLE_FONT}"
-      
-  if create_scalable_fonts; then
-    :
-  else
-    io__message "${WSL_SCALEABLE_FAILED}"
-    exit 1
-  fi
+  ./bin/vcxsrv-installer.exe
+
+  #io__message "${WSL_CREATE_SCALEABLE_FONT}"
+  #    
+  #if create_scalable_fonts; then
+  #  :
+  #else
+  #  io__message "${WSL_SCALEABLE_FAILED}"
+  #  exit 1
+  #fi
   
   # TODO(jason076): Add a fix for blurry fonts caused by dpi scaling
+  # Dialog for choosing a gdk_scale factor
 
   # TODO(jason076): Add message
   # Install dbus-x11

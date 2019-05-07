@@ -27,12 +27,13 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # My environmentvariables
-export DISPLAY=:0
 
-# Start Xming
+# Start XServer
 echo "THIS IST YOUR LOGIN SHELL, DON'T CLOSE IT. \
 CLOSING IT WILL TERMINATE YOUR SESSION!"
 
+export DISPLAY=localhost:0.0
+#export GDK_SCALE=2
 echo "It maybe require a few seconds for Terminator to get visible."
 
-. ~/.local/bin/startXming.sh
+. ~/.local/bin/startX.sh
